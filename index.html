@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benim Portfoyüm</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #00aaff;
+            --secondary-color: #ffdd57;
+            --text-color: #333;
+            --bg-color: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #0088cc);
+            padding: 15px 0;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        header .logo {
+            float: left;
+            font-size: 28px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        nav {
+            float: right;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        .clearfix {
+            clear: both;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: url('/api/placeholder/1200/800') no-repeat center center/cover;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: #fff;
+        }
+
+        .hero img {
+            border-radius: 50%;
+            width: 180px;
+            height: 180px;
+            border: 8px solid var(--primary-color);
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+            object-fit: cover;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s forwards 0.5s;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s forwards 0.7s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s forwards 0.9s;
+        }
+
+        .btn:hover {
+            background-color: #fff;
+            color: var(--primary-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 2px;
+            background-color: var(--secondary-color);
+            bottom: -10px;
+            left: 25%;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .about-text {
+            flex: 1;
+            padding-right: 30px;
+        }
+
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .about-image img:hover {
+            transform: scale(1.05);
+        }
+
+        .skills {
+            background-color: #fff;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .skill-item {
+            text-align: center;
+            margin: 15px;
+            width: 100px;
+            min-width: 80px;
+            max-width: 120px;
+            
+        }
+
+        .skill-icon {
+            font-size: 48px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .projects {
+            background-color: var(--bg-color);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .project-info {
+            padding: 20px;
+        }
+
+        .project-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .project-description {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        .project-link {
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .project-link:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: #fff;
+            font-size: 24px;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+                float: right;
+                font-size: 28px;
+                color: #fff;
+                cursor: pointer;
+            }
+
+            nav {
+                display: none;
+                width: 100%;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                background: var(--primary-color);
+                padding: 20px;
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-text {
+                padding-right: 0;
+                margin-bottom: 20px;
+            }
+
+            .about-image {
+                margin-bottom: 20px;
+            }
+
+            .skills-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .skill-item {
+                margin: 15px 0;
+                width: 100px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .skills-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .skill-item {
+                margin: 10px 0;
+                width: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div class="logo">Portföy</div>
+        <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        <nav>
+            <ul>
+                <li><a href="#about">Hakkımda</a></li>
+                <li><a href="#skills">Yetenekler</a></li>
+                <li><a href="#projects">Projeler</a></li>
+            </ul>
+        </nav>
+        <div class="clearfix"></div>
+    </div>
+</header>
+
+<div class="hero">
+    <div class="hero-content">
+        <img src="/img/profile.jpg" alt="Profile Picture">
+        <h1>Adil Oğuz</h1>
+        <p>Web & Mobil Geliştirici</p>
+        <a href="#about" class="btn">Daha fazla bilgi edin</a>
+    </div>
+</div>
+
+<section id="about">
+    <div class="container">
+        <div class="section-title">
+            <h2>Hakkımda</h2>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <p><b>Merhaba! Ben Adil</b>, bir frontend ve mobil geliştiriciyim. Teknolojinin hızla gelişen dünyasında, kullanıcı deneyimini ön planda tutarak, etkileyici ve işlevsel dijital çözümler sunmaya odaklanıyorum.</p> <br >
+                
+                <p><b>Frontend</b> tarafında, modern web teknolojileri ve araçları kullanarak, şık ve kullanıcı dostu arayüzler oluşturuyorum. HTML, CSS ve JavaScript gibi temel teknolojilerden başlayıp, React ve Angular gibi popüler kütüphanelerle projelerimi güçlendiriyorum.</p>
+                <br >
+                <p><b>Mobil geliştirme</b> alanında ise, Flutter ve Kotlin kullanarak hem Android hem de iOS platformları için yüksek performanslı uygulamalar geliştiriyorum. Kullanıcıların ihtiyaçlarını ve beklentilerini dikkate alarak, her projeye özel, özelleştirilmiş çözümler sunuyorum.</p>
+            </div>
+            <div class="about-image">
+                <img src="/img/about.png" alt="About Image">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="skills" class="skills">
+    <div class="container">
+        <div class="section-title">
+            <h2>Yetenekler</h2>
+        </div>
+        <div class="skills-container">
+            <div class="skill-item">
+                <i class="fab fa-html5 skill-icon"></i>
+                <p>HTML5</p>
+            </div>
+            <div class="skill-item">
+                <i class="fab fa-css3-alt skill-icon"></i>
+                <p>CSS3</p>
+            </div>
+            <div class="skill-item">
+                <i class="fab fa-js-square skill-icon"></i>
+                <p>JavaScript</p>
+            </div>
+            <div class="skill-item">
+                <i class="fab fa-react skill-icon"></i>
+                <p>React</p>
+            </div>
+            <div class="skill-item">
+                <i class="fab fa-node-js skill-icon"></i>
+                <p>Node.js</p>
+            </div>
+            <div class="skill-item">
+                <i class="fab fa-angular skill-icon"></i>
+                <p>Angular</p>
+            </div>
+            <div class="skill-item">
+                <i class="fab fa-python skill-icon"></i>
+                <p>Python</p>
+            </div>
+            <div class="skill-item">
+                <i class="fab fa-java skill-icon"></i>
+                <p>Java</p>
+            </div>
+            <div class="skill-item">
+                <i class="fab fa-android skill-icon"></i>
+                <p>Android</p>
+            </div>
+            <div class="skill-item">
+                <i class="fab fa-apple skill-icon"></i>
+                <p>iOS</p>
+            </div>
+            <div class="skill-item">
+                <i class="fas fa-database skill-icon"></i>
+                <p>SQL</p>
+            </div>
+            <div class="skill-item">
+                <i class="fas fa-server skill-icon"></i>
+                <p>Back-end</p>
+            </div>
+            <div class="skill-item">
+                <i class="fab fa-docker skill-icon"></i>
+                <p>Docker</p>
+            </div>
+            <div class="skill-item">
+                <i class="fab fa-git-alt skill-icon"></i>
+                <p>Git</p>
+            </div>
+            <div class="skill-item">
+                <i class="fas fa-code-branch skill-icon"></i>
+                <p>Kotlin</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="projects" class="projects">
+    <div class="container">
+        <div class="section-title">
+            <h2>Projeler</h2>
+        </div>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('/img/project1.jpg');"></div>
+                <div class="project-info">
+                    <h3 class="project-title">Modern profil kartı uygulaması</h3>
+                    <p class="project-description">Bu proje, kullanıcı bilgilerini şık ve işlevsel bir şekilde sergileyen modern bir profil kartı uygulamasıdır. Kullanıcıların fotoğraf, temel bilgileri ve sosyal medya bağlantılarını kolayca görüntüleyebileceğiniz bu uygulama, özelleştirilebilir tasarımı ve kullanıcı dostu arayüzü ile dikkat çeker.</p>
+                    <a href="#" class="project-link">Projeyi görüntüle</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('/img/project2.jpg');"></div>
+                <div class="project-info">
+                    <h3 class="project-title">Link ağacı uygulaması</h3>
+                    <p class="project-description">Bu uygulama, kullanıcıların çeşitli sosyal medya ve web bağlantılarını tek bir yerde toplamasını sağlayan bir link ağacı platformudur. Şık ve özelleştirilebilir arayüzü sayesinde, kullanıcılar kolayca bağlantılarını düzenleyebilir ve paylaşabilir. Hem kişisel hem de profesyonel kullanımlar için ideal bir çözümdür.</p>
+                    <a href="#" class="project-link">Projeyi görüntüle</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('/img/project3.jpg');"></div>
+                <div class="project-info">
+                    <h3 class="project-title">Neumorphic  websitesi</h3>
+                    <p class="project-description">Bu proje, modern ve estetik bir neumorphic tasarıma sahip basit bir portföy sitesidir. Kullanıcıların çalışmalarını şık bir şekilde sergilemesine olanak tanır ve minimalist tasarımıyla dikkat çeker. Neumorphic stilin sunduğu derinlik ve gerçekçilik etkileriyle, ziyaretçilere etkileyici bir kullanıcı deneyimi sunar.</p>
+                    <a href="#" class="project-link">Projeyi görüntüle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2024 Adil Oğuz. Tüm hakları saklıdır.</p>
+        <div class="social-links">
+            <a href="https://www.instagram.com/adil_ls72?igsh=Nm5laXkwMjExYzZo"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/adiloguz"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.querySelector('.menu-toggle').addEventListener('click', function() {
+        document.querySelector('nav').classList.toggle('active');
+    });
+</script>
+
+</body>
+</html>
